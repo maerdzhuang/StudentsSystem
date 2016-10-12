@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="User_*" class="com.zxj.action.UserAction" method="{1}">
+			<result name="input">/index.jsp</result>
+			<result name="login_success">/WEB-INF/pages/admin/Users_login_success.jsp</result>
+			<result name="login_fail">/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="Student" namespace="/student" extends="struts-default">
+		<action name="Student_*" class="com.zxj.action.StudentAction" method="{1}">
+			<result name="students">/WEB-INF/pages/student/Students_query_success.jsp</result>
+			<!-- chain表示跳转另一个动作，相当于服务器内部跳转，此次相当于跳转到所有学生的页面 -->
+			<result name="delete_success" type="chain">Student_getAllStudents</result>
+		</action>
+	</package> 
+</struts>    
